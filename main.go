@@ -22,7 +22,8 @@ func main() {
 	// We tell Go exactly where we can find our html file. We ask Go to parse the html file (Notice
 	// the relative path). We wrap it in a call to template.Must() which handles any errors and halts if there are fatal errors
 
-	templates := template.Must(template.ParseGlob("template/*.go.tmpl"))
+	templates := template.Must(template.ParseGlob("web/template/*.go.tmpl"))
+	templates = template.Must(templates.ParseGlob("web/template/pages/*.go.tmpl"))
 
 	// Our HTML comes with CSS that go needs to provide when we run the app. Here we tell go to create
 	// a handle that looks in the static directory, go then uses the "/static/" as a url that our
@@ -38,7 +39,7 @@ func main() {
 			welcome.Name = name
 		}
 
-		if err := templates.ExecuteTemplate(w, "index.html", welcome); err != nil {
+		if err := templates.ExecuteTemplate(w, "pages/home", welcome); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
 	})
