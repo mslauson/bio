@@ -15,23 +15,25 @@ type Welcome struct {
 
 // Go application entrypoint
 func main() {
-	//Instantiate a Welcome struct object and pass in some random information.
-	//We shall get the name of the user as a query parameter from the URL
+	// Instantiate a Welcome struct object and pass in some random information.
+	// We shall get the name of the user as a query parameter from the URL
 	welcome := Welcome{"Anonymous", time.Now().Format(time.Stamp)}
 
-	//We tell Go exactly where we can find our html file. We ask Go to parse the html file (Notice
+	// We tell Go exactly where we can find our html file. We ask Go to parse the html file (Notice
 	// the relative path). We wrap it in a call to template.Must() which handles any errors and halts if there are fatal errors
 
-	templates := template.Must(template.ParseFiles("template/index.html"))
+	templates := template.Must(template.ParseGlob("template/*.go.tmpl"))
 
-	//Our HTML comes with CSS that go needs to provide when we run the app. Here we tell go to create
+	// Our HTML comes with CSS that go needs to provide when we run the app. Here we tell go to create
 	// a handle that looks in the static directory, go then uses the "/static/" as a url that our
-	//html can refer to when looking for our css and other files.
+	// html can refer to when looking for our css and other files.
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static")))) //Go looks in the relative "static" directory first using http.FileServer(), then matches it to a
+	http.Handle(
+		"/static/",
+		http.StripPrefix("/static/", http.FileServer(http.Dir("static"))),
+	) // Go looks in the relative "static" directory first using http.FileServer(), then matches it to a
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-
 		if name := r.FormValue("name"); name != "" {
 			welcome.Name = name
 		}
