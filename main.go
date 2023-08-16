@@ -29,8 +29,15 @@ func main() {
 	}
 }
 
+type HomeData struct {
+	Name string
+}
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	data := map[string]interface{}{} // Fill in data as required
+	data := HomeData{
+		Name: "Matthew Slauson",
+	}
+
 	err := templates.ExecuteTemplate(w, "index", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
