@@ -4,13 +4,10 @@ package base
 
 //lint:file-ignore SA4006 This context is only used if a nested component is present.
 
-import (
-	"bytes"
-	"context"
-	"io"
-
-	"github.com/a-h/templ"
-)
+import "github.com/a-h/templ"
+import "context"
+import "io"
+import "bytes"
 
 func Head(title string) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) (err error) {
@@ -129,14 +126,38 @@ func Head(title string) templ.Component {
 		if err != nil {
 			return err
 		}
+		// RawElement
+		_, err = templBuffer.WriteString("<script")
+		if err != nil {
+			return err
+		}
+		// Element Attributes
+		_, err = templBuffer.WriteString(" src=\"https://cdn.tailwindcss.com\"")
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString(">")
+		if err != nil {
+			return err
+		}
+		// Text
+		var_2 := ``
+		_, err = templBuffer.WriteString(var_2)
+		if err != nil {
+			return err
+		}
+		_, err = templBuffer.WriteString("</script>")
+		if err != nil {
+			return err
+		}
 		// Element (standard)
 		_, err = templBuffer.WriteString("<title>")
 		if err != nil {
 			return err
 		}
 		// StringExpression
-		var var_2 string = title
-		_, err = templBuffer.WriteString(templ.EscapeString(var_2))
+		var var_3 string = title
+		_, err = templBuffer.WriteString(templ.EscapeString(var_3))
 		if err != nil {
 			return err
 		}
@@ -159,9 +180,9 @@ func Body() templ.Component {
 			defer templ.ReleaseBuffer(templBuffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		var_3 := templ.GetChildren(ctx)
-		if var_3 == nil {
-			var_3 = templ.NopComponent
+		var_4 := templ.GetChildren(ctx)
+		if var_4 == nil {
+			var_4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		// Element (standard)
@@ -263,8 +284,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_4 := `Your Blog Name`
-		_, err = templBuffer.WriteString(var_4)
+		var_5 := `Your Blog Name`
+		_, err = templBuffer.WriteString(var_5)
 		if err != nil {
 			return err
 		}
@@ -313,8 +334,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_5 := `About`
-		_, err = templBuffer.WriteString(var_5)
+		var_6 := `About`
+		_, err = templBuffer.WriteString(var_6)
 		if err != nil {
 			return err
 		}
@@ -341,8 +362,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_6 := `Portfolio`
-		_, err = templBuffer.WriteString(var_6)
+		var_7 := `Portfolio`
+		_, err = templBuffer.WriteString(var_7)
 		if err != nil {
 			return err
 		}
@@ -369,8 +390,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_7 := `Blog`
-		_, err = templBuffer.WriteString(var_7)
+		var_8 := `Blog`
+		_, err = templBuffer.WriteString(var_8)
 		if err != nil {
 			return err
 		}
@@ -397,8 +418,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_8 := `Contact`
-		_, err = templBuffer.WriteString(var_8)
+		var_9 := `Contact`
+		_, err = templBuffer.WriteString(var_9)
 		if err != nil {
 			return err
 		}
@@ -559,8 +580,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_9 := `About`
-		_, err = templBuffer.WriteString(var_9)
+		var_10 := `About`
+		_, err = templBuffer.WriteString(var_10)
 		if err != nil {
 			return err
 		}
@@ -587,8 +608,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_10 := `Portfolio`
-		_, err = templBuffer.WriteString(var_10)
+		var_11 := `Portfolio`
+		_, err = templBuffer.WriteString(var_11)
 		if err != nil {
 			return err
 		}
@@ -615,8 +636,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_11 := `Blog`
-		_, err = templBuffer.WriteString(var_11)
+		var_12 := `Blog`
+		_, err = templBuffer.WriteString(var_12)
 		if err != nil {
 			return err
 		}
@@ -643,8 +664,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_12 := `Contact`
-		_, err = templBuffer.WriteString(var_12)
+		var_13 := `Contact`
+		_, err = templBuffer.WriteString(var_13)
 		if err != nil {
 			return err
 		}
@@ -675,8 +696,8 @@ func Body() templ.Component {
 			return err
 		}
 		// Text
-		var_13 := `hello world`
-		_, err = templBuffer.WriteString(var_13)
+		var_14 := `hello world`
+		_, err = templBuffer.WriteString(var_14)
 		if err != nil {
 			return err
 		}
@@ -703,9 +724,9 @@ func Base() templ.Component {
 			defer templ.ReleaseBuffer(templBuffer)
 		}
 		ctx = templ.InitializeContext(ctx)
-		var_14 := templ.GetChildren(ctx)
-		if var_14 == nil {
-			var_14 = templ.NopComponent
+		var_15 := templ.GetChildren(ctx)
+		if var_15 == nil {
+			var_15 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		// DocType
