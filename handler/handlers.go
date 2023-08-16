@@ -1,12 +1,16 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"gitea.slauson.io/blog/blog-ui/components/base"
-	"github.com/a-h/templ"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	templ.Handler(base.Base())
+	log.Default().Print("IndexHandler")
+	err := base.Base().Render(r.Context(), w)
+	if err != nil {
+		panic(err)
+	}
 }

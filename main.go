@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"text/template"
 
-	"github.com/gorilla/mux"
+	"gitea.slauson.io/blog/blog-ui/handler"
 )
 
 // Create a struct that holds information to be displayed in our HTML file
@@ -16,11 +16,7 @@ type Welcome struct {
 var templates *template.Template
 
 func main() {
-	// Parse your templates
-	templates = template.Must(template.ParseGlob("web/template/*.gohtml"))
-
-	r := mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
+	r := handler.CreateRouter()
 	http.Handle("/", r)
 
 	err := http.ListenAndServe(":8080", nil)
