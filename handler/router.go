@@ -1,1 +1,9 @@
-func CreateRouter(){}
+package handler
+
+import "github.com/gorilla/mux"
+
+func CreateRouter() *mux.Router {
+	r := mux.NewRouter()
+
+	return r
+}
