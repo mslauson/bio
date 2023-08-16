@@ -17,7 +17,7 @@ var templates *template.Template
 
 func main() {
 	// Parse your templates
-	templates = template.Must(template.ParseGlob("web/template/*.tmpl"))
+	templates = template.Must(template.ParseGlob("web/template/*.gohtml"))
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
@@ -31,7 +31,7 @@ func main() {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	data := map[string]interface{}{} // Fill in data as required
-	err := templates.ExecuteTemplate(w, "base", data)
+	err := templates.ExecuteTemplate(w, "index", data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
