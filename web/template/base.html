@@ -1,0 +1,57 @@
+{{define "base"}}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    {{block "meta" .}}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{$cacheDisabled := true}}
+        {{if $cacheDisabled}}
+            <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+            <meta http-equiv="Pragma" content="no-cache">
+            <meta http-equiv="Expires" content="0">
+        {{end}}
+    {{end}}
+
+    <title>{{block "title" .}}start{{end}}</title>
+    
+    {{block "css" .}}
+      <link href="https://cdn.jsdelivr.net/npm/daisyui@2.6.0/dist/full.css" rel="stylesheet" type="text/css" />
+    {{end}}
+    {{block "js" .}}
+  <script src="https://cdn.tailwindcss.com"></script>
+    {{end}}
+    {{block "head" .}}
+    {{end}}
+  
+</head>
+
+<body>
+<div class="navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost normal-case text-xl">Matthew Slauson</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      <li><a>Link</a></li>
+      <li>
+        <details>
+          <summary>
+            Parent
+          </summary>
+          <ul class="p-2 bg-base-100">
+            <li><a>Link 1</a></li>
+            <li><a>Link 2</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
+
+</html>
+{{end}}
