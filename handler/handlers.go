@@ -1,15 +1,20 @@
 package handler
 
 import (
+	"fmt"
 	"log"
 	"net/http"
-
-	"gitea.slauson.io/blog/blog-ui/components/base"
+	"text/template"
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	log.Default().Print("IndexHandler")
-	err := base.Base().Render(r.Context(), w)
+	t := template.Must(
+		template.ParseFiles("web/template/index.gohtml", "web/template/base.gohtml"),
+	)
+
+	fmt.Println(t)
+	err := t.ExecuteTemplate(w, "base", nil)
 	if err != nil {
 		panic(err)
 	}
